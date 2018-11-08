@@ -171,7 +171,7 @@ namespace Administrativo
         public void BD_mostrarUsuarios(DataGridView dataGridView1, object menu)
         {
 
-            var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,telCelular FROM usuarios;";
+            var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,tel_celular FROM users;";
             var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
 
             var adaptador = new MySqlDataAdapter(consulta, c);
