@@ -172,7 +172,7 @@ namespace Administrativo
         {
 
             var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,telCelular FROM usuarios;";
-            var c = new MySqlConnection("server=localhost; database=administrativos; Uid=root; pwd=");
+            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
 
             var adaptador = new MySqlDataAdapter(consulta, c);
             var commandBuilder = new MySqlCommandBuilder(adaptador);
