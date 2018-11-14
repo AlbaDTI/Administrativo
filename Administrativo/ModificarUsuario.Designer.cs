@@ -71,6 +71,8 @@
             this.checkedListBox7 = new System.Windows.Forms.CheckedListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -78,6 +80,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -156,7 +159,7 @@
             this.tableLayoutPanel10.Controls.Add(this.label17, 4, 1);
             this.tableLayoutPanel10.Controls.Add(this.label18, 4, 3);
             this.tableLayoutPanel10.Controls.Add(this.label19, 4, 5);
-            this.tableLayoutPanel10.Controls.Add(this.button2, 5, 7);
+            this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel5, 5, 7);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 83);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -176,6 +179,7 @@
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(723, 83);
             this.button3.Name = "button3";
@@ -187,6 +191,7 @@
             // txtNombre
             // 
             this.txtNombre.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNombre.Enabled = false;
             this.txtNombre.Location = new System.Drawing.Point(83, 9);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(154, 20);
@@ -195,6 +200,7 @@
             // txtDomicilio
             // 
             this.txtDomicilio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDomicilio.Enabled = false;
             this.txtDomicilio.Location = new System.Drawing.Point(83, 46);
             this.txtDomicilio.Name = "txtDomicilio";
             this.txtDomicilio.Size = new System.Drawing.Size(154, 20);
@@ -203,6 +209,7 @@
             // txtCorreo
             // 
             this.txtCorreo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCorreo.Enabled = false;
             this.txtCorreo.Location = new System.Drawing.Point(83, 83);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(154, 20);
@@ -211,6 +218,7 @@
             // txtUsuario
             // 
             this.txtUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUsuario.Enabled = false;
             this.txtUsuario.Location = new System.Drawing.Point(83, 120);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(154, 20);
@@ -219,6 +227,7 @@
             // txtApellido
             // 
             this.txtApellido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtApellido.Enabled = false;
             this.txtApellido.Location = new System.Drawing.Point(323, 9);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(154, 20);
@@ -227,6 +236,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTelefono.Enabled = false;
             this.txtTelefono.Location = new System.Drawing.Point(323, 46);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(154, 20);
@@ -235,6 +245,7 @@
             // txtNEmpleado
             // 
             this.txtNEmpleado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNEmpleado.Enabled = false;
             this.txtNEmpleado.Location = new System.Drawing.Point(323, 83);
             this.txtNEmpleado.Name = "txtNEmpleado";
             this.txtNEmpleado.Size = new System.Drawing.Size(154, 20);
@@ -243,6 +254,7 @@
             // txtpassword
             // 
             this.txtpassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtpassword.Enabled = false;
             this.txtpassword.Location = new System.Drawing.Point(323, 120);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.Size = new System.Drawing.Size(154, 20);
@@ -252,6 +264,7 @@
             // txtEdad
             // 
             this.txtEdad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEdad.Enabled = false;
             this.txtEdad.Location = new System.Drawing.Point(563, 9);
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(154, 20);
@@ -260,6 +273,7 @@
             // txtMovil
             // 
             this.txtMovil.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMovil.Enabled = false;
             this.txtMovil.Location = new System.Drawing.Point(563, 46);
             this.txtMovil.Name = "txtMovil";
             this.txtMovil.Size = new System.Drawing.Size(154, 20);
@@ -268,6 +282,7 @@
             // comboBox1
             // 
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(563, 83);
             this.comboBox1.Name = "comboBox1";
@@ -409,13 +424,15 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(563, 120);
+            this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(154, 31);
+            this.button2.Size = new System.Drawing.Size(71, 25);
             this.button2.TabIndex = 23;
             this.button2.Text = "Modificar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -628,6 +645,32 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Location = new System.Drawing.Point(80, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(71, 25);
+            this.button4.TabIndex = 26;
+            this.button4.Text = "Habilitar";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.button2, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.button4, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(563, 120);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(154, 31);
+            this.tableLayoutPanel5.TabIndex = 27;
+            // 
             // ModificarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -648,6 +691,7 @@
             this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -697,5 +741,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button button4;
     }
 }

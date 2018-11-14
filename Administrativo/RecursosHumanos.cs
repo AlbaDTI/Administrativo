@@ -23,7 +23,7 @@ namespace Administrativo
             //agregando barra personalizada
             n.AgregarMenu(panel1, new Barra());
             //cargando datos de la bd, se muestra tabla de usuarios
-            n.BD_mostrarUsuarios(dataGridView1,this);
+            n.BD_mostrarOperadores(dataGridView1,this);
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -89,6 +89,11 @@ namespace Administrativo
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void RecursosHumanos_MaximizedBoundsChanged(object sender, EventArgs e)
         {
 
         }

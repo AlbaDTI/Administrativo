@@ -73,6 +73,12 @@
     <Compile Include="AgregarCliente.Designer.cs">
       <DependentUpon>AgregarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="agregarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="agregarRol.Designer.cs">
+      <DependentUpon>agregarRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="AgregarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,11 @@
       <DependentUpon>Dispositivo.cs</DependentUpon>
     </Compile>
     <Compile Include="funciones.cs" />
+    <Compile Include="InnHogarDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InnHogarDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Loging.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +173,9 @@
     </Compile>
     <EmbeddedResource Include="AgregarCliente.resx">
       <DependentUpon>AgregarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="agregarRol.resx">
+      <DependentUpon>agregarRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarUsuario.resx">
       <DependentUpon>AgregarUsuario.cs</DependentUpon>
@@ -215,6 +229,17 @@
     <EmbeddedResource Include="RecursosHumanos.resx">
       <DependentUpon>RecursosHumanos.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="InnHogarDataSet.xsc">
+      <DependentUpon>InnHogarDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="InnHogarDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InnHogarDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InnHogarDataSet.xss">
+      <DependentUpon>InnHogarDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

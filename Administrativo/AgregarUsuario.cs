@@ -20,6 +20,7 @@ namespace Administrativo
             funciones n = new funciones();
             //agregando barra personalizada
             n.AgregarMenu(panel1, new Barra());
+           n.BD_mostrarRoles(comboBox1, this);
 
 
         }
@@ -67,7 +68,7 @@ namespace Administrativo
         private void button2_Click_1(object sender, EventArgs e)
         {
            funciones n = new funciones();
-            n.BD_AgregarUsuarios(txtNombre, txtApellido,txtEdad,txtDomicilio, txtTelefono,
+            n.BD_AgregarOperador(txtNombre, txtApellido,txtEdad,txtDomicilio, txtTelefono,
                                  txtMovil,txtCorreo, txtNEmpleado, txtUsuario,txtpassword);
 
 
@@ -75,7 +76,8 @@ namespace Administrativo
         //boton para añadir rol
         private void button3_Click(object sender, EventArgs e)
         {
-
+            agregarRol n = new agregarRol();
+            n.Show();
         }
         //boton para regresar
         private void button1_Click_1(object sender, EventArgs e)
@@ -87,12 +89,23 @@ namespace Administrativo
 
         private void AgregarUsuario_Load(object sender, EventArgs e)
         {
+           
             /*Adaptando ell tamaño de form al de la pantalla*/
             this.Location = Screen.PrimaryScreen.WorkingArea.Location;
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
         }
 
         private void tableLayoutPanel10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rolesBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
         }

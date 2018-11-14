@@ -168,10 +168,11 @@ namespace Administrativo
         /****************************************
         *FUNCIONES DE LA BASE DE DATOS *
         ****************************************/
-        public void BD_mostrarUsuarios(DataGridView dataGridView1, object menu)
+        public void BD_mostrarOperadores(DataGridView dataGridView1, object menu)
         {
 
-            var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,tel_celular FROM users;";
+            var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,tel_celular FROM operadores;";
+
             var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
 
             var adaptador = new MySqlDataAdapter(consulta, c);
@@ -182,13 +183,45 @@ namespace Administrativo
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        public void BD_mostrarRoles(ComboBox comboBox1, object menu)
+        {
 
+            var consulta = "SELECT rol FROM roles;";
+            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
+
+            MySqlCommand cmd = new MySqlCommand(consulta, c);
+            MySqlDataAdapter da1 = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da1.Fill(dt);
+            comboBox1.ValueMember = "rol";
+            comboBox1.DataSource = dt;
+
+
+
+        }
+        public void BD_Roles(DataGridView dataGridView1, object menu)
+        {
+
+            var consulta = "SELECT id_roles,rol,fecha_creación FROM operadores;";
+
+            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
+
+            var adaptador = new MySqlDataAdapter(consulta, c);
+            var commandBuilder = new MySqlCommandBuilder(adaptador);
+
+            var ds = new DataSet();
+            adaptador.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
         public void BD_mostrarDispositivos(DataGridView dataGridView1, object menu)
         {
-            /*
-            var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,telCelular FROM usuarios;";
-            var c = new MySqlConnection("server=localhost; database=administrativos; Uid=root; pwd=");
+            
+            var consulta = "SELECT nombre, nserie,alias,estado,t_uso, vida, fecha_creacion FROM dispositivos";
+            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
+
 
             var adaptador = new MySqlDataAdapter(consulta, c);
             var commandBuilder = new MySqlCommandBuilder(adaptador);
@@ -198,13 +231,13 @@ namespace Administrativo
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            */
+            
         }
         public void BD_mostrarClientes(DataGridView dataGridView1, object menu)
         {
-            /*
-            var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,telCelular FROM usuarios;";
-            var c = new MySqlConnection("server=localhost; database=administrativos; Uid=root; pwd=");
+            
+            var consulta = "SELECT nombre, num_identificacion, rfc, dom_fiscal, pm_escritura,pm_rep_legal,fecha_registro FROM usuarios;";
+            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
 
             var adaptador = new MySqlDataAdapter(consulta, c);
             var commandBuilder = new MySqlCommandBuilder(adaptador);
@@ -214,9 +247,10 @@ namespace Administrativo
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            */
+           
         }
-        public void BD_AgregarUsuarios(
+
+        public void BD_AgregarOperador(
             TextBox txtNombre, TextBox txtApellido, TextBox txtEdad,
             TextBox txtDomicilio, TextBox txtTelefono, TextBox txtMovil,
             TextBox txtCorreo, TextBox txtNEmpleado, TextBox txtUsuario,
@@ -224,9 +258,9 @@ namespace Administrativo
         {
 
 
-            MySqlConnection conexion = new MySqlConnection("server=localhost; database=administrativos; Uid=root; pwd=;");
+            MySqlConnection conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
             //utilizamos el procedimiento alamacenado insertarusuarios
-            MySqlCommand cmd = new MySqlCommand("AgregarUsuario", conexion);
+            MySqlCommand cmd = new MySqlCommand("AgregarOPerador", conexion);
             //especificamos que el comando es un procedimiento almacenado
             cmd.CommandType = CommandType.StoredProcedure;
             //creamos los parametros que usaremos
@@ -262,6 +296,75 @@ namespace Administrativo
 
 
         }
+        public void BD_AgregarRol(TextBox txtRol)
+        {
+
+            MySqlConnection conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
+            //utilizamos el procedimiento alamacenado insertarusuarios
+            MySqlCommand cmd = new MySqlCommand("AgregarRol", conexion);
+            //especificamos que el comando es un procedimiento almacenado
+            cmd.CommandType = CommandType.StoredProcedure;
+            //creamos los parametros que usaremos
+            cmd.Parameters.AddWithValue("@rol", txtRol.Text);
+            //abrimos conexion
+            conexion.Open();
+            //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("El Rol se ha agregado", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            txtRol.Clear();
+            //cerramos conexion
+            conexion.Close();
+        }
+
+
+        public void BD_ModificarOperador(
+            TextBox txtNombre, TextBox txtApellido, TextBox txtEdad,
+            TextBox txtDomicilio, TextBox txtTelefono, TextBox txtMovil,
+            TextBox txtCorreo, TextBox txtNEmpleado, TextBox txtUsuario,
+            TextBox txtpassword)
+        {
+
+
+            MySqlConnection conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
+            //utilizamos el procedimiento alamacenado insertarusuarios
+            MySqlCommand cmd = new MySqlCommand("modificarOPerador", conexion);
+            //especificamos que el comando es un procedimiento almacenado
+            cmd.CommandType = CommandType.StoredProcedure;
+            //creamos los parametros que usaremos
+            cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
+            cmd.Parameters.AddWithValue("@apellidos", txtApellido.Text);
+            cmd.Parameters.AddWithValue("@edad", txtEdad.Text);
+
+            cmd.Parameters.AddWithValue("@domicilio", txtDomicilio.Text);
+            cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text);
+            cmd.Parameters.AddWithValue("@celular", txtMovil.Text);
+            cmd.Parameters.AddWithValue("@email", txtCorreo.Text);
+            cmd.Parameters.AddWithValue("@NumEmpleado", txtNEmpleado.Text);
+            cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+            cmd.Parameters.AddWithValue("@password", txtpassword.Text);
+            //abrimos conexion
+            conexion.Open();
+            //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("El operador se modifico", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            txtNombre.Clear();
+
+            txtApellido.Clear();
+            txtEdad.Clear();
+            txtDomicilio.Clear();
+            txtTelefono.Clear();
+            txtMovil.Clear();
+            txtCorreo.Clear();
+            txtNEmpleado.Clear();
+            txtUsuario.Clear();
+            txtpassword.Clear();
+            //cerramos conexion
+            conexion.Close();
+
+
+        }
+
+    }
 
         /*public void BD_Loggin(TextBox usser, TextBox contra, object menu)
         {
@@ -276,5 +379,5 @@ namespace Administrativo
             adaptador.Fill(ds);
             
         }*/
-    }
+    
 }

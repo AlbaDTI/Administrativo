@@ -31,3 +31,4 @@ C:\Users\Marsari\source\repos\Administrativo\Administrativo\obj\Debug\Administra
 C:\Users\Marsari\source\repos\Administrativo\Administrativo\obj\Debug\Administrativo.Dispositivo.resources
 C:\Users\Marsari\source\repos\Administrativo\Administrativo\obj\Debug\Administrativo.Control.resources
 C:\Users\Marsari\source\repos\Administrativo\Administrativo\obj\Debug\Administrativo.ControlCamara.resources
+C:\Users\Marsari\source\repos\Administrativo\Administrativo\obj\Debug\Administrativo.agregarRol.resources
