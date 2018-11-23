@@ -14,12 +14,13 @@ namespace Administrativo
 {
     public partial class RecursosHumanos : Form
     {
+        funciones n= new funciones();
         public RecursosHumanos()
         {
             
             InitializeComponent();
 
-            funciones n = new funciones();
+            
             //agregando barra personalizada
             n.AgregarMenu(panel1, new Barra());
             //cargando datos de la bd, se muestra tabla de usuarios
@@ -57,19 +58,17 @@ namespace Administrativo
         //boton para regresar al menu
         private void button4_Click_1(object sender, EventArgs e)
         {
-            funciones n = new funciones();
             n.VentanaMenu(this);
         }
         //boton para agregar usuario nuevo
         private void button1_Click_1(object sender, EventArgs e)
         {
-            funciones n = new funciones();
+            
             n.VentanaAgregarRH(this);
         }
         //boton para modificar usuario 
         private void button2_Click(object sender, EventArgs e)
         {
-            funciones n = new funciones();
             n.VentanaModificarRH(this);
         }
         //boton para eliminar usuario 
@@ -96,6 +95,12 @@ namespace Administrativo
         private void RecursosHumanos_MaximizedBoundsChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //cargando datos de la bd, se muestra tabla de usuarios
+           
         }
     }
 }

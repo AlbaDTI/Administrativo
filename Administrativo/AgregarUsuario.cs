@@ -20,7 +20,7 @@ namespace Administrativo
             funciones n = new funciones();
             //agregando barra personalizada
             n.AgregarMenu(panel1, new Barra());
-           n.BD_mostrarRoles(comboBox1, this);
+           n.BD_mostrarRoles(cbRol, this);
 
 
         }
@@ -69,7 +69,7 @@ namespace Administrativo
         {
            funciones n = new funciones();
             n.BD_AgregarOperador(txtNombre, txtApellido,txtEdad,txtDomicilio, txtTelefono,
-                                 txtMovil,txtCorreo, txtNEmpleado, txtUsuario,txtpassword);
+                                 txtMovil,txtCorreo, txtNEmpleado, txtUsuario,txtpassword,cbRol);
 
 
         }

@@ -12,6 +12,7 @@ namespace Administrativo
 {
     public partial class ModificarUsuario : Form
     {
+        funciones n = new funciones();
         public ModificarUsuario()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace Administrativo
             //agregando barra personalizada
             n.AgregarMenu(panel1, new Barra());
             /*Adaptando ell tamaño de form al de la pantalla*/
+            n.BD_mostrarRoles(cbRol, this);
 
         }
 
@@ -58,7 +60,7 @@ namespace Administrativo
         {
             button2.Enabled = habilitar;
             button3.Enabled = habilitar;
-            comboBox1.Enabled = habilitar;
+            cbRol.Enabled = habilitar;
             txtNombre.Enabled = habilitar;
             txtApellido.Enabled = habilitar;
             txtCorreo.Enabled = habilitar;
@@ -80,12 +82,18 @@ namespace Administrativo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            funciones n = new funciones();
+            
             n.BD_ModificarOperador (
             txtNombre,txtApellido,txtEdad,
             txtDomicilio, txtTelefono,txtMovil,
-            txtCorreo,txtNEmpleado,txtUsuario,txtpassword);
+            txtCorreo,txtNEmpleado,txtUsuario,txtpassword,cbRol);
             habilita(false);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            n.BD_Mostrar_Datos_Operadores(this, txtBusqueda.Text,txtNombre, txtApellido, txtEdad, txtDomicilio, txtTelefono,
+                                txtMovil, txtCorreo, txtNEmpleado, txtUsuario, txtpassword, cbRol);
         }
     }
 }

@@ -13,13 +13,15 @@ namespace Administrativo
     class funciones
     {
 
+        MySqlConnection conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
+
         /****************************************
         *FUNCIONES PARA ABRIR VENTANAS          *
         ****************************************/
         //FUNCIÓN  ABRIR VENTANA MENU (MODULOS)
         public void VentanaMenu(object v)
         {
-           
+
             Form ventana = v as Form;
             ventana.Hide();
             Menu NvaVentana = new Menu();
@@ -76,7 +78,7 @@ namespace Administrativo
         {
             Form ventana = v as Form;
             ventana.Close();
-           panelControl NvaVentana = new panelControl();
+            panelControl NvaVentana = new panelControl();
             NvaVentana.Show();
 
         }
@@ -124,7 +126,7 @@ namespace Administrativo
 
             if (panel1.Controls.Count > 0)
                 panel1.Controls.RemoveAt(0);
-          
+
             Form Brr = menu as Form;
             Brr.TopLevel = false;
             Brr.Dock = DockStyle.Fill;
@@ -134,7 +136,7 @@ namespace Administrativo
 
         }
 
-       
+
         //función para cerrar programa (en la barra personalizada)
         public void CerrarPrograma(object v)
         {
@@ -168,216 +170,236 @@ namespace Administrativo
         /****************************************
         *FUNCIONES DE LA BASE DE DATOS *
         ****************************************/
-        public void BD_mostrarOperadores(DataGridView dataGridView1, object menu)
+        public void BD_Mostrar_Datos_Operadores( object menu, String id,
+            TextBox txtNombre, TextBox txtApellido, TextBox txtEdad,
+            TextBox txtDomicilio, TextBox txtTelefono, TextBox txtMovil,
+            TextBox txtCorreo, TextBox txtNEmpleado, TextBox txtUsuario,
+            TextBox txtpassword, ComboBox cbRol)
         {
+            conexion.Open();
 
-            var consulta = "SELECT nombre, apellidos, domicilio,eMail,telefono,tel_celular FROM operadores;";
+            var consulta = "SELECT  *  FROM operadores WHERE num_empleado='" + id + "';";
 
-            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-
-            var adaptador = new MySqlDataAdapter(consulta, c);
-            var commandBuilder = new MySqlCommandBuilder(adaptador);
-
-            var ds = new DataSet();
-            adaptador.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-        }
-        public void BD_mostrarRoles(ComboBox comboBox1, object menu)
-        {
-
-            var consulta = "SELECT rol FROM roles;";
-            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-
-            MySqlCommand cmd = new MySqlCommand(consulta, c);
+            MySqlCommand cmd = new MySqlCommand(consulta,conexion);
+            ListBox listBox3 = new ListBox();
+            MySqlDataReader leer;
+            leer = cmd.ExecuteReader();
             MySqlDataAdapter da1 = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da1.Fill(dt);
-            comboBox1.ValueMember = "rol";
-            comboBox1.DataSource = dt;
+            while (leer.Read() == true)
+            {
+                listBox3.Items.Add(leer[0].ToString());
+            }
+            //if (listBox3.Items.Count > 0)
+            {
 
+                String id2 = listBox3.Items[2].ToString();
+                MessageBox.Show(id2, "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
+                txtNombre.Text = listBox3.Items[1].ToString();
 
-        }
-        public void BD_Roles(DataGridView dataGridView1, object menu)
-        {
-
-            var consulta = "SELECT id_roles,rol,fecha_creación FROM operadores;";
-
-            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-
-            var adaptador = new MySqlDataAdapter(consulta, c);
-            var commandBuilder = new MySqlCommandBuilder(adaptador);
-
-            var ds = new DataSet();
-            adaptador.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-        }
-        public void BD_mostrarDispositivos(DataGridView dataGridView1, object menu)
-        {
-            
-            var consulta = "SELECT nombre, nserie,alias,estado,t_uso, vida, fecha_creacion FROM dispositivos";
-            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-
-
-            var adaptador = new MySqlDataAdapter(consulta, c);
-            var commandBuilder = new MySqlCommandBuilder(adaptador);
-
-            var ds = new DataSet();
-            adaptador.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                txtApellido.Text = listBox3.Items[2].ToString();
+                txtEdad.Text = listBox3.Items[3].ToString();
+                txtDomicilio.Text = listBox3.Items[4].ToString();
+                txtCorreo.Text = listBox3.Items[5].ToString();
+                txtTelefono.Text = listBox3.Items[6].ToString();
+                
+                txtMovil.Text = listBox3.Items[7].ToString();
+                
+                txtNEmpleado.Text = listBox3.Items[8].ToString();
+                txtUsuario.Text = listBox3.Items[9].ToString();
+                txtpassword.Text = listBox3.Items[10].ToString();
+                cbRol.Text = listBox3.Items[11].ToString();
+               
+            }
             
         }
-        public void BD_mostrarClientes(DataGridView dataGridView1, object menu)
-        {
-            
-            var consulta = "SELECT nombre, num_identificacion, rfc, dom_fiscal, pm_escritura,pm_rep_legal,fecha_registro FROM usuarios;";
-            var c = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-
-            var adaptador = new MySqlDataAdapter(consulta, c);
-            var commandBuilder = new MySqlCommandBuilder(adaptador);
-
-            var ds = new DataSet();
-            adaptador.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-           
-        }
-
-        public void BD_AgregarOperador(
-            TextBox txtNombre, TextBox txtApellido, TextBox txtEdad,
-            TextBox txtDomicilio, TextBox txtTelefono, TextBox txtMovil,
-            TextBox txtCorreo, TextBox txtNEmpleado, TextBox txtUsuario,
-            TextBox txtpassword)
-        {
 
 
-            MySqlConnection conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-            //utilizamos el procedimiento alamacenado insertarusuarios
-            MySqlCommand cmd = new MySqlCommand("AgregarOPerador", conexion);
-            //especificamos que el comando es un procedimiento almacenado
-            cmd.CommandType = CommandType.StoredProcedure;
-            //creamos los parametros que usaremos
-            cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
-            cmd.Parameters.AddWithValue("@apellidos", txtApellido.Text);
-            cmd.Parameters.AddWithValue("@edad", txtEdad.Text);
+    
+    public void BD_mostrarOperadores(DataGridView dataGridView1, object menu)
+    {
 
-            cmd.Parameters.AddWithValue("@domicilio", txtDomicilio.Text);
-            cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text);
-            cmd.Parameters.AddWithValue("@celular", txtMovil.Text);
-            cmd.Parameters.AddWithValue("@email", txtCorreo.Text);
-            cmd.Parameters.AddWithValue("@NumEmpleado", txtNEmpleado.Text);
-            cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
-            cmd.Parameters.AddWithValue("@password", txtpassword.Text);
-            //abrimos conexion
-            conexion.Open();
-            //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("El usuario se ha agregado", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            txtNombre.Clear();
-
-            txtApellido.Clear();
-            txtEdad.Clear();
-            txtDomicilio.Clear();
-            txtTelefono.Clear();
-            txtMovil.Clear();
-            txtCorreo.Clear();
-            txtNEmpleado.Clear();
-            txtUsuario.Clear();
-            txtpassword.Clear();
-            //cerramos conexion
-            conexion.Close();
+        var consulta = "SELECT nombre, apellido, domicilio,eMail,telefono,tel_celular FROM operadores;";
 
 
-        }
-        public void BD_AgregarRol(TextBox txtRol)
-        {
+        var adaptador = new MySqlDataAdapter(consulta, conexion);
+        var commandBuilder = new MySqlCommandBuilder(adaptador);
+             
+        var ds = new DataSet();
+        adaptador.Fill(ds);
+        dataGridView1.ReadOnly = true;
+        dataGridView1.DataSource = ds.Tables[0];
+        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+    }
+    public void BD_mostrarRoles(ComboBox comboBox1, object menu)
+    {
 
-            MySqlConnection conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-            //utilizamos el procedimiento alamacenado insertarusuarios
-            MySqlCommand cmd = new MySqlCommand("AgregarRol", conexion);
-            //especificamos que el comando es un procedimiento almacenado
-            cmd.CommandType = CommandType.StoredProcedure;
-            //creamos los parametros que usaremos
-            cmd.Parameters.AddWithValue("@rol", txtRol.Text);
-            //abrimos conexion
-            conexion.Open();
-            //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("El Rol se ha agregado", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            txtRol.Clear();
-            //cerramos conexion
-            conexion.Close();
-        }
+        var consulta = "SELECT rol FROM roles;";
 
-
-        public void BD_ModificarOperador(
-            TextBox txtNombre, TextBox txtApellido, TextBox txtEdad,
-            TextBox txtDomicilio, TextBox txtTelefono, TextBox txtMovil,
-            TextBox txtCorreo, TextBox txtNEmpleado, TextBox txtUsuario,
-            TextBox txtpassword)
-        {
+        MySqlCommand cmd = new MySqlCommand(consulta, conexion);
+        MySqlDataAdapter da1 = new MySqlDataAdapter(cmd);
+        DataTable dt = new DataTable();
+        da1.Fill(dt);
+        comboBox1.ValueMember = "rol";
+        comboBox1.DataSource = dt;
 
 
-            MySqlConnection conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
-            //utilizamos el procedimiento alamacenado insertarusuarios
-            MySqlCommand cmd = new MySqlCommand("modificarOPerador", conexion);
-            //especificamos que el comando es un procedimiento almacenado
-            cmd.CommandType = CommandType.StoredProcedure;
-            //creamos los parametros que usaremos
-            cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
-            cmd.Parameters.AddWithValue("@apellidos", txtApellido.Text);
-            cmd.Parameters.AddWithValue("@edad", txtEdad.Text);
 
-            cmd.Parameters.AddWithValue("@domicilio", txtDomicilio.Text);
-            cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text);
-            cmd.Parameters.AddWithValue("@celular", txtMovil.Text);
-            cmd.Parameters.AddWithValue("@email", txtCorreo.Text);
-            cmd.Parameters.AddWithValue("@NumEmpleado", txtNEmpleado.Text);
-            cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
-            cmd.Parameters.AddWithValue("@password", txtpassword.Text);
-            //abrimos conexion
-            conexion.Open();
-            //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("El operador se modifico", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            txtNombre.Clear();
+    }
+    public void BD_Roles(DataGridView dataGridView1, object menu)
+    {
 
-            txtApellido.Clear();
-            txtEdad.Clear();
-            txtDomicilio.Clear();
-            txtTelefono.Clear();
-            txtMovil.Clear();
-            txtCorreo.Clear();
-            txtNEmpleado.Clear();
-            txtUsuario.Clear();
-            txtpassword.Clear();
-            //cerramos conexion
-            conexion.Close();
+        var consulta = "SELECT * FROM roles;";
 
 
-        }
+        var adaptador = new MySqlDataAdapter(consulta, conexion);
+        var commandBuilder = new MySqlCommandBuilder(adaptador);
+
+        var ds = new DataSet();
+        adaptador.Fill(ds);
+        dataGridView1.ReadOnly = true;
+        dataGridView1.DataSource = ds.Tables[0];
+        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+    }
+    public void BD_mostrarDispositivos(DataGridView dataGridView1, object menu)
+    {
+
+        var consulta = "SELECT nombre, nserie,alias,estado,t_uso, vida, fecha_creacion FROM dispositivos";
+
+
+        var adaptador = new MySqlDataAdapter(consulta, conexion);
+        var commandBuilder = new MySqlCommandBuilder(adaptador);
+
+        var ds = new DataSet();
+        adaptador.Fill(ds);
+        dataGridView1.ReadOnly = true;
+        dataGridView1.DataSource = ds.Tables[0];
+        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+    }
+    public void BD_mostrarClientes(DataGridView dataGridView1, object menu)
+    {
+
+        var consulta = "SELECT nombre, num_identificacion, rfc, dom_fiscal, pm_escritura,pm_rep_legal,fecha_registro FROM usuarios;";
+        var conexion = new MySqlConnection("server=albadti2018.ddns.net; database=InnHogar; Uid=root; pwd=Alba+2018");
+
+        var adaptador = new MySqlDataAdapter(consulta, conexion);
+        var commandBuilder = new MySqlCommandBuilder(adaptador);
+
+        var ds = new DataSet();
+        adaptador.Fill(ds);
+        dataGridView1.ReadOnly = true;
+        dataGridView1.DataSource = ds.Tables[0];
+        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
     }
 
-        /*public void BD_Loggin(TextBox usser, TextBox contra, object menu)
-        {
-            
-            var consulta = "SELECT password FROM usuarios;";
-            var c = new MySqlConnection("server=localhost; database=administrativos; Uid=root; pwd=");
+    public void BD_AgregarOperador(
+        TextBox txtNombre, TextBox txtApellido, TextBox txtEdad,
+        TextBox txtDomicilio, TextBox txtTelefono, TextBox txtMovil,
+        TextBox txtCorreo, TextBox txtNEmpleado, TextBox txtUsuario,
+        TextBox txtpassword, ComboBox cbRol)
+    {
 
-            var adaptador = new MySqlDataAdapter(consulta, c);
-            var commandBuilder = new MySqlCommandBuilder(adaptador);
 
-            var ds = new DataSet();
-            adaptador.Fill(ds);
-            
-        }*/
-    
+        //utilizamos el procedimiento alamacenado insertarusuarios
+        MySqlCommand cmd = new MySqlCommand("AgregarOPerador", conexion);
+        //especificamos que el comando es un procedimiento almacenado
+        cmd.CommandType = CommandType.StoredProcedure;
+        //creamos los parametros que usaremos
+        cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
+        cmd.Parameters.AddWithValue("@apellido", txtApellido.Text);
+        cmd.Parameters.AddWithValue("@edad", txtEdad.Text);
+
+        cmd.Parameters.AddWithValue("@domicilio", txtDomicilio.Text);
+        cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text);
+        cmd.Parameters.AddWithValue("@celular", txtMovil.Text);
+        cmd.Parameters.AddWithValue("@email", txtCorreo.Text);
+        cmd.Parameters.AddWithValue("@NumEmpleado", txtNEmpleado.Text);
+        cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+        cmd.Parameters.AddWithValue("@rol", cbRol.Text);
+        cmd.Parameters.AddWithValue("@password", txtpassword.Text);
+        //abrimos conexion
+        conexion.Open();
+        //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
+        cmd.ExecuteNonQuery();
+        MessageBox.Show("El usuario se ha agregado", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        txtNombre.Clear();
+
+        txtApellido.Clear();
+        txtEdad.Clear();
+        txtDomicilio.Clear();
+        txtTelefono.Clear();
+        txtMovil.Clear();
+        txtCorreo.Clear();
+        txtNEmpleado.Clear();
+        txtUsuario.Clear();
+        txtpassword.Clear();
+        //cerramos conexion
+        conexion.Close();
+
+
+    }
+    public void BD_AgregarRol(TextBox txtRol)
+    {
+
+        //utilizamos el procedimiento alamacenado insertarusuarios
+        MySqlCommand cmd = new MySqlCommand("AgregarRol", conexion);
+        //especificamos que el comando es un procedimiento almacenado
+        cmd.CommandType = CommandType.StoredProcedure;
+        //creamos los parametros que usaremos
+        cmd.Parameters.AddWithValue("@rol", txtRol.Text);
+        //abrimos conexion
+        conexion.Open();
+        //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
+        cmd.ExecuteNonQuery();
+        MessageBox.Show("El Rol se ha agregado", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+        //cerramos conexion
+        conexion.Close();
+    }
+
+
+    public void BD_ModificarOperador(
+        TextBox txtNombre, TextBox txtApellido, TextBox txtEdad,
+        TextBox txtDomicilio, TextBox txtTelefono, TextBox txtMovil,
+        TextBox txtCorreo, TextBox txtNEmpleado, TextBox txtUsuario,
+        TextBox txtpassword, ComboBox cbRol)
+    {
+
+
+        //utilizamos el procedimiento alamacenado insertarusuarios
+        MySqlCommand cmd = new MySqlCommand("modificarOPerador", conexion);
+        //especificamos que el comando es un procedimiento almacenado
+        cmd.CommandType = CommandType.StoredProcedure;
+        //creamos los parametros que usaremos
+        cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
+        cmd.Parameters.AddWithValue("@apellido", txtApellido.Text);
+        cmd.Parameters.AddWithValue("@edad", txtEdad.Text);
+
+        cmd.Parameters.AddWithValue("@domicilio", txtDomicilio.Text);
+        cmd.Parameters.AddWithValue("@telefono", txtTelefono.Text);
+        cmd.Parameters.AddWithValue("@celular", txtMovil.Text);
+        cmd.Parameters.AddWithValue("@email", txtCorreo.Text);
+        cmd.Parameters.AddWithValue("@NumEmpleado", txtNEmpleado.Text);
+        cmd.Parameters.AddWithValue("@rol", cbRol.Text);
+
+        cmd.Parameters.AddWithValue("@NumEmpleado", cbRol.Text);
+        cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+        cmd.Parameters.AddWithValue("@password", txtpassword.Text);
+        //abrimos conexion
+        conexion.Open();
+        //ejecutamos la instruccion con ExcecuteNonQuerry indicando que no retorna registros.
+        cmd.ExecuteNonQuery();
+        MessageBox.Show("El operador se modifico", "Cerrar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+        //cerramos conexion
+        conexion.Close();
+
+
+    }
+   
 }
+}
+
+

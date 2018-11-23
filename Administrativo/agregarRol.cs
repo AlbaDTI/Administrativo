@@ -15,6 +15,9 @@ namespace Administrativo
         public agregarRol()
         {
             InitializeComponent();
+            funciones n = new funciones();
+
+            n.BD_Roles(dataGridView1, this);
         }
 
         private void button1_Click(object sender, EventArgs e)
